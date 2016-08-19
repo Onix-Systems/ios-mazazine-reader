@@ -1,0 +1,6 @@
+framework module Pods_MazazineReaderTests {
+  umbrella header "Pods-MazazineReaderTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
