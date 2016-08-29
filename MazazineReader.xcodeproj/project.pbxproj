@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A9EAE88CFE2460DD2DF57EB1 /* Pods_MazazineReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E19C43731F3C8D4D7B7AA54 /* Pods_MazazineReader.framework */; };
+		AA3D08871D742BBD00179DEC /* UploadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D08861D742BBD00179DEC /* UploadListViewController.swift */; };
+		AA3D08891D74326100179DEC /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D08881D74326100179DEC /* AppConstants.swift */; };
+		AA3D088B1D743D3700179DEC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D088A1D743D3700179DEC /* Alert.swift */; };
+		AA3D088D1D74633C00179DEC /* FileDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D088C1D74633C00179DEC /* FileDetailVC.swift */; };
 		AA3F0AED4D1DB4A214C3B22C /* Pods_MazazineReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B497EBAA2AC23E48D05809D /* Pods_MazazineReaderTests.framework */; };
 		AA40678F1D6722140081965C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA40678E1D6722140081965C /* AppDelegate.swift */; };
 		AA4067911D6722140081965C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4067901D6722140081965C /* MasterViewController.swift */; };
@@ -49,6 +53,10 @@
 		6E19C43731F3C8D4D7B7AA54 /* Pods_MazazineReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazazineReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87ED4BD29156B21DF033E5DD /* Pods-MazazineReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazazineReaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MazazineReaderUITests/Pods-MazazineReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B497EBAA2AC23E48D05809D /* Pods_MazazineReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazazineReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA3D08861D742BBD00179DEC /* UploadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadListViewController.swift; sourceTree = "<group>"; };
+		AA3D08881D74326100179DEC /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		AA3D088A1D743D3700179DEC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		AA3D088C1D74633C00179DEC /* FileDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDetailVC.swift; sourceTree = "<group>"; };
 		AA40678B1D6722140081965C /* MazazineReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazazineReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA40678E1D6722140081965C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA4067901D6722140081965C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +115,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AA3D088E1D74675A00179DEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA3D08881D74326100179DEC /* AppConstants.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		AA4067821D6722140081965C = {
 			isa = PBXGroup;
 			children = (
@@ -132,16 +148,15 @@
 		AA40678D1D6722140081965C /* MazazineReader */ = {
 			isa = PBXGroup;
 			children = (
+				AA3D088E1D74675A00179DEC /* Model */,
 				AAAC00E31D6727760038EF6E /* ViewControllers */,
 				AA40678E1D6722140081965C /* AppDelegate.swift */,
-				AA4067901D6722140081965C /* MasterViewController.swift */,
-				AA4067921D6722140081965C /* DetailViewController.swift */,
 				AA4067941D6722140081965C /* Main.storyboard */,
 				AA4067971D6722140081965C /* Assets.xcassets */,
 				AA4067991D6722140081965C /* LaunchScreen.storyboard */,
 				AA40679C1D6722140081965C /* Info.plist */,
 				AAAC00E11D6722790038EF6E /* GoogleService-Info.plist */,
-				AAAC00E61D6728420038EF6E /* MainVC.swift */,
+				AA3D088A1D743D3700179DEC /* Alert.swift */,
 			);
 			path = MazazineReader;
 			sourceTree = "<group>";
@@ -168,6 +183,11 @@
 			isa = PBXGroup;
 			children = (
 				AAAC00E41D6727A40038EF6E /* LoginViewController.swift */,
+				AA3D08861D742BBD00179DEC /* UploadListViewController.swift */,
+				AA3D088C1D74633C00179DEC /* FileDetailVC.swift */,
+				AAAC00E61D6728420038EF6E /* MainVC.swift */,
+				AA4067901D6722140081965C /* MasterViewController.swift */,
+				AA4067921D6722140081965C /* DetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -452,7 +472,11 @@
 				AAAC00E71D6728420038EF6E /* MainVC.swift in Sources */,
 				AA4067931D6722140081965C /* DetailViewController.swift in Sources */,
 				AA4067911D6722140081965C /* MasterViewController.swift in Sources */,
+				AA3D08891D74326100179DEC /* AppConstants.swift in Sources */,
 				AA40678F1D6722140081965C /* AppDelegate.swift in Sources */,
+				AA3D088B1D743D3700179DEC /* Alert.swift in Sources */,
+				AA3D08871D742BBD00179DEC /* UploadListViewController.swift in Sources */,
+				AA3D088D1D74633C00179DEC /* FileDetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

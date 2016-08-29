@@ -1,0 +1,6 @@
+framework module vfrReader {
+  umbrella header "vfrReader-umbrella.h"
+
+  export *
+  module * { export * }
+}

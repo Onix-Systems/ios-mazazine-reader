@@ -10,6 +10,9 @@ target 'MazazineReader' do
   pod 'PKHUD'
   pod 'SCLAlertView'
   pod 'GoogleSignIn'
+  pod 'Gloss'
+  pod 'SwiftyDropbox'
+  pod 'vfrReader'
 
   # Pods for MazazineReader
 

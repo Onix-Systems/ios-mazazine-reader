@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Eureka.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Gloss.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,15 +44,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyDropbox.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>vfrReader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1FAA27786BCBE85408B086C542F3D39B</key>
+		<key>4B16943C5DCE7CB030B146BE434728AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B16943C5DCE7CB030B146BE434728AC</key>
+		<key>53DC82455BF17BA3B54F5F690B11C5FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +77,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>913EF0FFD2640C2FD57B4D7D14651350</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B07B012AE17952EE777271E277F90284</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDD6F1BF0419F97DAABD29ECA645AA19</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C0D75C9A98173231671DABAA793EDE5A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0AE95D86EA8A47424BA4511137DC907</key>
+		<key>E581E2B21C533F530C78A87EE17CC12F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

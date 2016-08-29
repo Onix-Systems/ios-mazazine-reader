@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import SwiftyDropbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -25,15 +26,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         FIRApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        Dropbox.setupWithAppKey("4fvpchk1tqk7pds")
+        
         return true
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        handleDropbox(openURL: url)
+        
         return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        handleDropbox(openURL: url)
+        
         return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    private func handleDropbox(openURL url: NSURL) {
+        if let authResult = Dropbox.handleRedirectURL(url) {
+            switch authResult {
+            case .Success(let token):
+                print("Success! User is logged into Dropbox with token: \(token)")
+                NSNotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.TokenKey : token])
+            case .Error(let error, let description):
+                NSNotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.ErrorDescriptionKey : description])
+                print("Error \(error): \(description)")
+            }
+        }
     }
     
     // MARK: - Split view

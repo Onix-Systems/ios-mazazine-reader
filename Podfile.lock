@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.4.1)
   - Eureka (1.6.0)
   - Firebase (3.3.0):
     - Firebase/Core (= 3.3.0)
@@ -25,6 +26,7 @@ PODS:
   - FirebaseDatabase (3.0.2):
     - FirebaseAnalytics (~> 3.2)
   - FirebaseInstanceID (1.0.7)
+  - Gloss (0.7.3)
   - GoogleAppUtilities (1.1.1):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleAuthUtilities (2.0.1):
@@ -47,23 +49,31 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0)
   - PKHUD (3.1.0)
   - SCLAlertView (0.5.9)
+  - SwiftyDropbox (3.0.0):
+    - Alamofire (~> 3.1)
+  - vfrReader (2.8.6)
 
 DEPENDENCIES:
   - Eureka
   - Firebase
   - Firebase/Auth
   - Firebase/Database
+  - Gloss
   - GoogleSignIn
   - PKHUD
   - SCLAlertView
+  - SwiftyDropbox
+  - vfrReader
 
 SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Eureka: ef5b9ac93aedeecfe50d98b1ac7678bf09a1fc62
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
   FirebaseAnalytics: 0fd6532cb2c3d03cd5cf26ad295ccb091efd3104
   FirebaseAuth: 5efddc3fae47042b73585f083f956462be4f5b8e
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: a9d923f3d0b6fbf9fac89310860357aaadc34be5
+  Gloss: c97a95d6279821f35fa0138700bce0391bce87c1
   GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
   GoogleAuthUtilities: d7a19615cd7627688afcf181737f1011ee8b5a23
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
@@ -74,7 +84,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
   SCLAlertView: d7c6a48c7d340e60206d4ed0e8ebcbff3b9d2a44
+  SwiftyDropbox: e0d4aa3166082ec07ed942e94edb8c732b3376e4
+  vfrReader: 94ea739a545e39093c93802ca1c5b203a5df46b1
 
-PODFILE CHECKSUM: a81d619b9abac2487b7e624047f8af5333f40d94
+PODFILE CHECKSUM: 00f173d64a39ea4df22f0f96a53c03ff03f1e8fe
 
 COCOAPODS: 1.0.1
