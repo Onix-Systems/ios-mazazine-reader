@@ -27,7 +27,7 @@ import Foundation
 
 // MARK: - Types
 
-public typealias JSON = [String : AnyObject]
+public typealias JSON = [String : Any]
 
 // MARK: - Protocols
 
@@ -71,17 +71,17 @@ Date formatter used for ISO8601 dates.
  
  - returns: Date formatter.
  */
-public private(set) var GlossDateFormatterISO8601: NSDateFormatter = {
-    let dateFormatterISO8601 = NSDateFormatter()
+public private(set) var GlossDateFormatterISO8601: DateFormatter = {
+    let dateFormatterISO8601 = DateFormatter()
     
     // WORKAROUND to ignore device configuration regarding AM/PM http://openradar.appspot.com/radar?id=1110403
-    dateFormatterISO8601.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    dateFormatterISO8601.locale = Locale(identifier: "en_US_POSIX")
     dateFormatterISO8601.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 
     // translate to Gregorian calendar if other calendar is selected in system settings
-    let gregorian = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    var gregorian = Calendar(identifier: Calendar.Identifier.gregorian)
     
-    gregorian.timeZone = NSTimeZone(abbreviation: "GMT")!
+    gregorian.timeZone = TimeZone(abbreviation: "GMT")!
     dateFormatterISO8601.calendar = gregorian
 
     return dateFormatterISO8601
@@ -100,18 +100,55 @@ public private(set) var GlossKeyPathDelimiter: String = {
  Transforms an array of JSON optionals to a single optional JSON dictionary.
  
  - parameter array:            Array of JSON to transform.
- - parameter keyPathDelimiter: Delimiter used for nested key paths.
  
  - returns: JSON when successful, nil otherwise.
  */
-public func jsonify(array: [JSON?], keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON? {
+public func jsonify(_ array: [JSON?], keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON? {
     var json: JSON = [:]
     
     for j in array {
         if(j != nil) {
-            json.add(j!, delimiter: keyPathDelimiter)
+            for (key,value) in j! {
+                setValue(inJSON: &json, value: value, forKeyPath: key, withDelimiter: keyPathDelimiter)
+            }
         }
     }
     
     return json
+}
+
+// MARK: Private
+
+/**
+ Sets value for provided key path delimited by provided delimiter.
+ 
+ Keypath can be delimited to represent a value present in nested JSON -
+ e.g. given a delimiter of '.', a valid keypath might be "owner.profile.id"
+ 
+ - parameter valueToSet:    Value to set
+ - parameter keyPath:       Key path.
+ - parameter withDelimiter: Delimiter for key path.
+ */
+private func setValue(inJSON json: inout JSON, value: Any, forKeyPath keyPath: String, withDelimiter delimiter: String = GlossKeyPathDelimiter) {
+    var keyComponents = keyPath.components(separatedBy:delimiter)
+    
+    guard let firstKey = keyComponents.first else {
+        return
+    }
+    
+    keyComponents.remove(at: 0)
+    
+    if keyComponents.isEmpty {
+        json[firstKey] = value
+    } else {
+        let rejoined = keyComponents.joined(separator: delimiter)
+        var subJSON: JSON = [:]
+        
+        if let existingSubJSON = json[firstKey] as? JSON {
+            subJSON = existingSubJSON
+        }
+        
+        setValue(inJSON: &subJSON, value:value, forKeyPath: rejoined, withDelimiter: delimiter)
+        json[firstKey] = subJSON
+    }
 }

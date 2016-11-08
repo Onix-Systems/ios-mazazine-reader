@@ -10,16 +10,16 @@ import Foundation
 import SwiftyDropbox
 
 struct AppConstants {
-    static let ErrorDomain = NSBundle.mainBundle().bundleIdentifier!
+    static let ErrorDomain = Bundle.main.bundleIdentifier!
 }
 
 enum Result<T : Any> {
-    case Success(T)
-    case Error(NSError)
+    case success(T)
+    case error(NSError)
 }
 
 enum ErrorCode: Int {
-    case DropboxLogin
+    case dropboxLogin
 }
 
 struct DropboxDidLoginNotification {
@@ -28,7 +28,7 @@ struct DropboxDidLoginNotification {
     static let ErrorKey = "kError"
     static let ErrorDescriptionKey = "kErrorDescription"
     
-    static func resultFromNotification(notification: NSNotification) -> Result<DropboxAccessToken> {
+    static func resultFromNotification(_ notification: NSNotification) -> Result<DropboxAccessToken> {
         if let errorDescription = notification.userInfo?[ErrorDescriptionKey] as? String {
             let error = NSError(domain: AppConstants.ErrorDomain, code: ErrorCode.DropboxLogin.rawValue, userInfo: [NSLocalizedDescriptionKey : errorDescription])
             return .Error(error)

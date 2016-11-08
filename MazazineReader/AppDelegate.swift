@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
         FIRApp.configure()
         
@@ -31,33 +31,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return true
     }
     
-    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         handleDropbox(openURL: url)
         
-        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         handleDropbox(openURL: url)
         
-        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
-    private func handleDropbox(openURL url: NSURL) {
+    fileprivate func handleDropbox(openURL url: URL) {
         if let authResult = Dropbox.handleRedirectURL(url) {
             switch authResult {
             case .Success(let token):
                 print("Success! User is logged into Dropbox with token: \(token)")
-                NSNotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.TokenKey : token])
+                NotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.TokenKey : token])
             case .Error(let error, let description):
-                NSNotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.ErrorDescriptionKey : description])
+                NotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.ErrorDescriptionKey : description])
                 print("Error \(error): \(description)")
             }
         }
     }
     
     // MARK: - Split view
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
         if topAsDetailController.detailItem == nil {

@@ -10,28 +10,28 @@ import UIKit
 import FirebaseAuth
 
 class MainVC: UISplitViewController {
-    private enum SegueIdentifier: String {
+    fileprivate enum SegueIdentifier: String {
         case Auth = "authSegue"
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
-            dispatch_async(dispatch_get_main_queue(), {
+        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+            DispatchQueue.main.async(execute: {
                 if let uUser = user {
                     
                 } else {
-                    self.performSegueWithIdentifier(SegueIdentifier.Auth.rawValue, sender: nil)
+                    self.performSegue(withIdentifier: SegueIdentifier.Auth.rawValue, sender: nil)
                 }
             })
         })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier) {
+        if let identifier = segue.identifier, let segueIdentifier = SegueIdentifier(rawValue: identifier) {
             switch segueIdentifier {
             case .Auth:
                 

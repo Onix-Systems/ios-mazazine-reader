@@ -57,7 +57,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     func login() {
         if let email = email(), let password = password() {
             HUD.show(.Progress)
-            FIRAuth.auth()!.signInWithEmail(email, password: password, completion: { (user, error) in
+            FIRAuth.auth()!.signIn(withEmail: email, password: password, completion: { (user, error) in
                 self.handleAuthResult(user, error: error)
             })
         }
@@ -66,7 +66,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     func createAccount() {
         if let email = email(), let password = password() {
             HUD.show(.Progress)
-            FIRAuth.auth()!.createUserWithEmail(email, password: password) { (user, error) in
+            FIRAuth.auth()!.createUser(withEmail: email, password: password) { (user, error) in
                 self.handleAuthResult(user, error: error)
             }
         }
@@ -77,7 +77,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     }
     
     func email() -> String? {
-        guard let emailRow = form.rowByTag(LoginFormTag.Email.rawValue) as? EmailRow, email = emailRow.value else {
+        guard let emailRow = form.rowByTag(LoginFormTag.Email.rawValue) as? EmailRow, let email = emailRow.value else {
             print("wft")
             return nil
         }
@@ -86,7 +86,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     }
     
     func password() -> String? {
-        guard let passwordRow = form.rowByTag(LoginFormTag.Password.rawValue) as? PasswordRow, password = passwordRow.value else {
+        guard let passwordRow = form.rowByTag(LoginFormTag.Password.rawValue) as? PasswordRow, let password = passwordRow.value else {
             print("wtf")
             return nil
         }
@@ -94,8 +94,8 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
         return password
     }
     
-    private func handleAuthResult(user: FIRUser?, error: NSError?) {
-        dispatch_async(dispatch_get_main_queue()) {
+    fileprivate func handleAuthResult(_ user: FIRUser?, error: NSError?) {
+        DispatchQueue.main.async {
             if let uError = error {
                 HUD.hide()
                 SCLAlertView().showError("Error", subTitle: uError.localizedDescription)
@@ -109,20 +109,20 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
 }
 
 extension LoginViewController : GIDSignInDelegate {
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+    func signIn(_ signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
         if let uError = error {
             SCLAlertView().showError("Error", subTitle: uError.localizedDescription)
         } else {
             let auth = user.authentication
-            let credential = FIRGoogleAuthProvider.credentialWithIDToken(auth.idToken, accessToken: auth.accessToken)
+            let credential = FIRGoogleAuthProvider.credential(withIDToken: (auth?.idToken)!, accessToken: (auth?.accessToken)!)
             HUD.show(.Progress)
-            FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
+            FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
                 self.handleAuthResult(user, error: error)
             })
         }
     }
     
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+    func signIn(_ signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
         self.handleAuthResult(nil, error: error)
     }
 }

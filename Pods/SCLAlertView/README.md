@@ -2,7 +2,7 @@ SCLAlertView
 ===========
 
 [![Version](https://img.shields.io/cocoapods/v/SCLAlertView.svg?style=flat)](http://cocoadocs.org/docsets/SCLAlertView/)
-
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Animated Alert View written in Swift, which can be used as a `UIAlertView` or `UIAlertController` replacement. Since `UIAlertView` is deprecated and `UIAlertController` only works on iOS 8.x or above, if you have a Swift project where you want to support iOS 7.x too, SCLAlertView is an ideal substitution.
 
@@ -109,7 +109,7 @@ alertView.showWarning("No button", subTitle: "Just wait for 3 seconds and I will
 let appearance = SCLAlertView.SCLAppearance(
     showCircularIcon: false
 )
-let alert = SCLAlertView(appearance: appearance)
+let alertView = SCLAlertView(appearance: appearance)
 alertView.showSuccess("No icon", subTitle: "This is a clean alert without Icon!")
 ```
 
@@ -119,7 +119,7 @@ alertView.showSuccess("No icon", subTitle: "This is a clean alert without Icon!"
 let appearance = SCLAlertView.SCLAppearance(
     showCircularIcon: true
 )
-let alert = SCLAlertView(appearance: appearance)
+let alertView = SCLAlertView(appearance: appearance)
 let alertViewIcon = UIImage(named: "IconImage") //Replace the IconImage text with the image name
 alertView.showInfo("Custom icon", subTitle: "This is a nice alert with a custom icon you choose", circleIconImage: alertViewIcon)
 ```

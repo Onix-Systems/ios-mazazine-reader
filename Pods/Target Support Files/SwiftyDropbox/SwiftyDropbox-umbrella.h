@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 
-#import "SecurityUtil.h"
 #import "SwiftyDropbox.h"
 
 FOUNDATION_EXPORT double SwiftyDropboxVersionNumber;
