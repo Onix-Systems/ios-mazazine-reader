@@ -52,7 +52,7 @@ SOFTWARE.
 
 ## Firebase
 
-Copyright 2016 Google
+Copyright 2017 Google
 
 ## FirebaseAnalytics
 
@@ -490,7 +490,7 @@ Copyright 2016 Google
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Harlan Kellaway
+Copyright (c) 2017 Harlan Kellaway
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         FIRApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        Dropbox.setupWithAppKey("4fvpchk1tqk7pds")
+        DropboxClientsManager.setupWithAppKey(Keys.dropboxAppKey)
         
         return true
     }
@@ -44,14 +44,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     fileprivate func handleDropbox(openURL url: URL) {
-        if let authResult = Dropbox.handleRedirectURL(url) {
+        if let authResult = DropboxClientsManager.handleRedirectURL(url) {
             switch authResult {
-            case .Success(let token):
+            case .success(let token):
                 print("Success! User is logged into Dropbox with token: \(token)")
-                NotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.TokenKey : token])
-            case .Error(let error, let description):
-                NotificationCenter.defaultCenter().postNotificationName(DropboxDidLoginNotification.Name, object: nil, userInfo: [DropboxDidLoginNotification.ErrorDescriptionKey : description])
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: DropboxDidLoginNotification.Name), object: nil, userInfo: [DropboxDidLoginNotification.TokenKey : token])
+            case .error(let error, let description):
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: DropboxDidLoginNotification.Name), object: nil, userInfo: [DropboxDidLoginNotification.ErrorDescriptionKey : description])
                 print("Error \(error): \(description)")
+            case .cancel:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: DropboxDidLoginNotification.Name), object: nil, userInfo: [DropboxDidLoginNotification.ErrorDescriptionKey : "User cancelled"])
             }
         }
     }

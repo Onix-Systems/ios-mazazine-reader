@@ -7,13 +7,17 @@
 //
 
 import UIKit
-import Eureka
 import FirebaseAuth
 import PKHUD
 import SCLAlertView
 import GoogleSignIn
+import Eureka
 
 class LoginViewController: FormViewController, GIDSignInUIDelegate {
+    private enum Segue : String {
+        case unwind = "unwindToMainVC"
+    }
+    
     enum LoginFormTag : String {
         case Email
         case Password
@@ -56,7 +60,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     
     func login() {
         if let email = email(), let password = password() {
-            HUD.show(.Progress)
+            HUD.show(.progress)
             FIRAuth.auth()!.signIn(withEmail: email, password: password, completion: { (user, error) in
                 self.handleAuthResult(user, error: error)
             })
@@ -65,7 +69,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     
     func createAccount() {
         if let email = email(), let password = password() {
-            HUD.show(.Progress)
+            HUD.show(.progress)
             FIRAuth.auth()!.createUser(withEmail: email, password: password) { (user, error) in
                 self.handleAuthResult(user, error: error)
             }
@@ -77,7 +81,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     }
     
     func email() -> String? {
-        guard let emailRow = form.rowByTag(LoginFormTag.Email.rawValue) as? EmailRow, let email = emailRow.value else {
+        guard let emailRow = form.rowBy(tag: LoginFormTag.Email.rawValue) as? EmailRow, let email = emailRow.value else {
             print("wft")
             return nil
         }
@@ -86,7 +90,7 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
     }
     
     func password() -> String? {
-        guard let passwordRow = form.rowByTag(LoginFormTag.Password.rawValue) as? PasswordRow, let password = passwordRow.value else {
+        guard let passwordRow = form.rowBy(tag: LoginFormTag.Password.rawValue) as? PasswordRow, let password = passwordRow.value else {
             print("wtf")
             return nil
         }
@@ -94,35 +98,35 @@ class LoginViewController: FormViewController, GIDSignInUIDelegate {
         return password
     }
     
-    fileprivate func handleAuthResult(_ user: FIRUser?, error: NSError?) {
+    fileprivate func handleAuthResult(_ user: FIRUser?, error: Error?) {
         DispatchQueue.main.async {
             if let uError = error {
                 HUD.hide()
                 SCLAlertView().showError("Error", subTitle: uError.localizedDescription)
             } else {
-                HUD.flash(.Success, delay: 1.0)
-                let uUser = user!
-                print(uUser)
+                HUD.flash(.success, delay: 1.0)
+                self.performSegue(withIdentifier: Segue.unwind.rawValue, sender: self)
             }
         }
     }
 }
 
 extension LoginViewController : GIDSignInDelegate {
-    func signIn(_ signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let uError = error {
             SCLAlertView().showError("Error", subTitle: uError.localizedDescription)
         } else {
             let auth = user.authentication
             let credential = FIRGoogleAuthProvider.credential(withIDToken: (auth?.idToken)!, accessToken: (auth?.accessToken)!)
-            HUD.show(.Progress)
+            HUD.show(.progress)
             FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
                 self.handleAuthResult(user, error: error)
+                return
             })
         }
     }
     
-    func signIn(_ signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         self.handleAuthResult(nil, error: error)
     }
 }

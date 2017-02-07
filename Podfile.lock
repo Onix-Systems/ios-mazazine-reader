@@ -1,34 +1,35 @@
 PODS:
   - Alamofire (4.0.1)
-  - Eureka (1.7.0)
-  - Firebase (3.9.0):
-    - Firebase/Core (= 3.9.0)
-  - Firebase/Auth (3.9.0):
+  - Eureka (2.0.0-beta.1)
+  - Firebase (3.12.0):
+    - Firebase/Core (= 3.12.0)
+  - Firebase/Auth (3.12.0):
     - Firebase/Core
-    - FirebaseAuth (= 3.0.6)
-  - Firebase/Core (3.9.0):
-    - FirebaseAnalytics (= 3.5.1)
-    - FirebaseCore (= 3.4.4)
-  - Firebase/Database (3.9.0):
+    - FirebaseAuth (= 3.1.0)
+  - Firebase/Core (3.12.0):
+    - FirebaseAnalytics (= 3.6.0)
+    - FirebaseCore (= 3.4.7)
+  - Firebase/Database (3.12.0):
     - Firebase/Core
-    - FirebaseDatabase (= 3.1.0)
-  - FirebaseAnalytics (3.5.1):
+    - FirebaseDatabase (= 3.1.1)
+  - FirebaseAnalytics (3.6.0):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseAuth (3.0.6):
-    - FirebaseAnalytics (~> 3.4)
+  - FirebaseAuth (3.1.0):
+    - FirebaseAnalytics (~> 3.6)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.4.4):
+  - FirebaseCore (3.4.7):
     - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseDatabase (3.1.0):
-    - FirebaseAnalytics (~> 3.4)
+  - FirebaseDatabase (3.1.1):
+    - FirebaseAnalytics (~> 3.5)
   - FirebaseInstanceID (1.0.8)
-  - Gloss (1.1.0)
+  - Gloss (1.2.0)
   - GoogleAppUtilities (1.1.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleInterchangeUtilities (1.2.2):
@@ -39,31 +40,31 @@ PODS:
     - GTMOAuth2 (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GoogleSymbolUtilities (1.1.2)
-  - GoogleToolboxForMac/DebugUtils (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/Defines (2.1.0)
-  - GoogleToolboxForMac/NSData+zlib (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.0):
-    - GoogleToolboxForMac/DebugUtils (= 2.1.0)
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.0)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.0)
+  - GoogleToolboxForMac/DebugUtils (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.1)
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMOAuth2 (1.1.4):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.7):
-    - GTMSessionFetcher/Full (= 1.1.7)
-  - GTMSessionFetcher/Core (1.1.7)
-  - GTMSessionFetcher/Full (1.1.7):
-    - GTMSessionFetcher/Core (= 1.1.7)
-  - PKHUD (4.0.0)
+  - GTMSessionFetcher (1.1.8):
+    - GTMSessionFetcher/Full (= 1.1.8)
+  - GTMSessionFetcher/Core (1.1.8)
+  - GTMSessionFetcher/Full (1.1.8):
+    - GTMSessionFetcher/Core (= 1.1.8)
+  - PKHUD (4.2.0)
   - SCLAlertView (0.7.0)
-  - SwiftyDropbox (4.1.0):
-    - Alamofire (~> 4.0.0)
+  - SwiftyDropbox (4.1.1):
+    - Alamofire (~> 4.0.1)
   - vfrReader (2.8.6)
 
 DEPENDENCIES:
-  - Eureka
+  - Eureka (~> 2.0.0-beta.1)
   - Firebase
   - Firebase/Auth
   - Firebase/Database
@@ -76,26 +77,26 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  Eureka: 2020d9faeef7b7e9adeb9e3d8af779e5931c1897
-  Firebase: ff77ffb77b317c3720fef57a60e9335cebf962e6
-  FirebaseAnalytics: 6e58fc9b397664369ac7617fb0ba93fab6ba7b5b
-  FirebaseAuth: 96e9674ff31d6e1f826d53e26aa003a57cab0295
-  FirebaseCore: d0ed25f27b6f9158eccc439f1be6f92e81207e28
-  FirebaseDatabase: 3ebb2edb6007c3f0f87b248f3fa212bde56a1468
+  Eureka: d014adf16406745e1a78d5790ea37ed130a0a8e5
+  Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
+  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
+  FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
+  FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
+  FirebaseDatabase: 6de92187481ff0e8e124064f21742e95ee883b02
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Gloss: a8340c124ff69c5d1c12e06c252373f4a16d2958
+  Gloss: ec49584b2e8144e39810b6db6285433316e0c1c7
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
-  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
-  GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
-  PKHUD: 2bb45c936bb8afa39f3cd33ec14e8cc89f624255
+  GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SwiftyDropbox: 0893e21982678ed69237c7c964a00c7a6f7079bb
+  SwiftyDropbox: dfcd4d308d32d74729255b48833db61acdfb9c23
   vfrReader: 94ea739a545e39093c93802ca1c5b203a5df46b1
 
-PODFILE CHECKSUM: 00f173d64a39ea4df22f0f96a53c03ff03f1e8fe
+PODFILE CHECKSUM: 7088ecf25548cae4380445911cd4a4a3a6ad5d94
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

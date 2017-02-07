@@ -28,7 +28,7 @@ The Gloss source currently available via CocoaPods and Carthage is compatible wi
 ### Installation with CocoaPods
 
 ```ruby
-pod 'Gloss', '~> 1.1'
+pod 'Gloss', '~> 1.2'
 ```
 
 ### Installation with Carthage
@@ -39,15 +39,13 @@ github "hkellaway/Gloss"
 
 ### Installation with Swift Package Manager
 
-To use Gloss as a [Swift Package Manager](https://swift.org/package-manager/) package just add the following in your Package.swift file.
-
 ``` swift
 import PackageDescription
 
 let package = Package(
     name: "HelloWorld",
     dependencies: [
-        .Package(url: "https://github.com/hkellaway/Gloss.git", majorVersion: 1, minorVersion: 1)
+        .Package(url: "https://github.com/hkellaway/Gloss.git", majorVersion: 1, minorVersion: 2)
     ]
 )
 ```
@@ -283,6 +281,18 @@ guard let repoOwners = [RepoOwner].from(jsonArray: repoOwnersJSON) else {
 print(repoOwners)
 ```
 
+#### Model Objects from Data
+
+Model objects can also be initialized directly from `Data` for convenience:
+
+``` swift
+let repoOwner: RepoOwner? = RepoOwner(data: repoOwnerData)
+```
+
+``` swift
+let repoOwners: [RepoOwner]? = [RepoOwner].from(data: repoOwnerDAta)
+```
+
 ### Translating Model Objects to JSON
 
 The JSON representation of an `Encodable` Gloss model is retrieved via `toJSON()`:
@@ -350,9 +360,9 @@ Gloss comes with a number of transformations built in for convenience (See: [Glo
 
 Translating from and to JSON is handled via:
 
-`Decoder.decode(dateFromKey:, dateFormatter:)` and `Decode.decode(dateArrayFromKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `self.date = Decoder.decode(dateFromKey: "dateKey", dateFormatter: myDateFormatter)(json)`
+`Decoder.decode(dateForKey:, dateFormatter:)` and `Decode.decode(dateArrayFromKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `self.date = Decoder.decode(dateForKey: "dateKey", dateFormatter: myDateFormatter)(json)`
 
-`Encoder.encode(dateFromKey:, dateFormatter:)` and `Encode.encode(dateFromKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `Encoder.encode(dateFromKey: "dateKey", dateFormatter: myDateFormatter)(self.date)`
+`Encoder.encode(dateForKey:, dateFormatter:)` and `Encode.encode(dateForKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `Encoder.encode(dateForKey: "dateKey", dateFormatter: myDateFormatter)(self.date)`
 
 #### Custom Transformations
 
@@ -489,6 +499,8 @@ The `<~~` operator is simply syntactic sugar for a set of `Decoder.decode` funct
 * NSURL arrays (`Decode.decode(urlArrayForKey:)`)
 * UUID types (`Decoder.decode(uuidForKey:)`)
 * UUID arrays (`Decoder.decode(uuidArrayForKey:)`)
+* Decimal types `(Decoder.decode(dedimalForKey:)`)
+* Decimal arrays (`Decoder.decode(decimalArrayForKey:)`)
 
 ##### The Encode Operator: `~~>`
 
@@ -511,6 +523,8 @@ The `~~>` operator is simply syntactic sugar for a set of `Encoder.encode` funct
 * UInt64 arrays (`Encoder.encode(uint64ArrayForKey:)`)
 * NSURL types (`Encoder.encode(urlForKey:)`)
 * UUID types (`Encoder.encode(uuidForKey:)`)
+* Decimal types (`Encoder.encode(decimalForKey:)`)
+* Decimal array (`Encoder.encode(decimalArrayForKey:)`)
 
 ### Gloss Protocols
 
@@ -547,14 +561,15 @@ Check out Gloss in these cool places!
 * [Alamofire-Gloss](https://github.com/spxrogers/Alamofire-Gloss)
 * [CRUD](https://github.com/MetalheadSanya/CRUD)
 * [Moya-Gloss](https://github.com/spxrogers/Moya-Gloss)
+* [OctoAPI](http://github.com/ferusinfo/OctoAPI)
 * [Restofire-Gloss](https://github.com/Restofire/Restofire-Gloss)
 
 #### SDKs/Products
 
-* [AniList](http://anilist.co) ([iOS SDK](https://github.com/CodeEagle/AniList))
+* [AniList](http://anilist.co) ([Unofficial iOS SDK](https://github.com/CodeEagle/AniList))
 * [Drift](http://www.drift.com) ([iOS SDK](https://github.com/Driftt/drift-sdk-ios))
-* [Phillips Hue](http://www2.meethue.com/en-US) ([iOS SDK](https://github.com/Spriter/SwiftyHue))
-* [Skiplagged](http://skiplagged.com) ([iOS SDK] (https://github.com/bulusoy/Skiplagged))
+* [Phillips Hue](http://www2.meethue.com/en-US) ([Unofficial iOS SDK](https://github.com/Spriter/SwiftyHue))
+* [Skiplagged](http://skiplagged.com) ([Unofficial iOS SDK] (https://github.com/bulusoy/Skiplagged))
 
 #### Apps
 

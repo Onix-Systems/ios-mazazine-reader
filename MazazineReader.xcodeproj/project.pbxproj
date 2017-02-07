@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9EAE88CFE2460DD2DF57EB1 /* Pods_MazazineReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E19C43731F3C8D4D7B7AA54 /* Pods_MazazineReader.framework */; };
+		AA1B299C1E4A0D08009EB50F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1B299B1E4A0D08009EB50F /* Keys.swift */; };
 		AA3D08871D742BBD00179DEC /* UploadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D08861D742BBD00179DEC /* UploadListViewController.swift */; };
 		AA3D08891D74326100179DEC /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D08881D74326100179DEC /* AppConstants.swift */; };
 		AA3D088B1D743D3700179DEC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D088A1D743D3700179DEC /* Alert.swift */; };
@@ -53,6 +54,7 @@
 		6E19C43731F3C8D4D7B7AA54 /* Pods_MazazineReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazazineReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87ED4BD29156B21DF033E5DD /* Pods-MazazineReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazazineReaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MazazineReaderUITests/Pods-MazazineReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B497EBAA2AC23E48D05809D /* Pods_MazazineReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazazineReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA1B299B1E4A0D08009EB50F /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		AA3D08861D742BBD00179DEC /* UploadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadListViewController.swift; sourceTree = "<group>"; };
 		AA3D08881D74326100179DEC /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		AA3D088A1D743D3700179DEC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				AA40679C1D6722140081965C /* Info.plist */,
 				AAAC00E11D6722790038EF6E /* GoogleService-Info.plist */,
 				AA3D088A1D743D3700179DEC /* Alert.swift */,
+				AA1B299B1E4A0D08009EB50F /* Keys.swift */,
 			);
 			path = MazazineReader;
 			sourceTree = "<group>";
@@ -282,7 +285,8 @@
 				TargetAttributes = {
 					AA40678A1D6722140081965C = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0810;
+						DevelopmentTeam = GJX986XEH7;
+						LastSwiftMigration = 0820;
 					};
 					AA4067A01D6722140081965C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -496,6 +500,7 @@
 				AA3D088B1D743D3700179DEC /* Alert.swift in Sources */,
 				AA3D08871D742BBD00179DEC /* UploadListViewController.swift in Sources */,
 				AA3D088D1D74633C00179DEC /* FileDetailVC.swift in Sources */,
+				AA1B299C1E4A0D08009EB50F /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,8 +649,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC76BFF6928388C109979D31 /* Pods-MazazineReader.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GJX986XEH7;
 				INFOPLIST_FILE = MazazineReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.onix.MazazineReader;
@@ -658,8 +664,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EBE9B6E45790FA60D1033D8 /* Pods-MazazineReader.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GJX986XEH7;
 				INFOPLIST_FILE = MazazineReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.onix.MazazineReader;

@@ -4,7 +4,7 @@
 target 'MazazineReader' do
   use_frameworks!
   pod 'Firebase'
-  pod 'Eureka'
+  pod 'Eureka', '~> 2.0.0-beta.1'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'PKHUD'

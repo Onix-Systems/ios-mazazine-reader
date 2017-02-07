@@ -28,13 +28,13 @@ struct DropboxDidLoginNotification {
     static let ErrorKey = "kError"
     static let ErrorDescriptionKey = "kErrorDescription"
     
-    static func resultFromNotification(_ notification: NSNotification) -> Result<DropboxAccessToken> {
+    static func resultFromNotification(_ notification: Notification) -> Result<DropboxAccessToken> {
         if let errorDescription = notification.userInfo?[ErrorDescriptionKey] as? String {
-            let error = NSError(domain: AppConstants.ErrorDomain, code: ErrorCode.DropboxLogin.rawValue, userInfo: [NSLocalizedDescriptionKey : errorDescription])
-            return .Error(error)
+            let error = NSError(domain: AppConstants.ErrorDomain, code: ErrorCode.dropboxLogin.rawValue, userInfo: [NSLocalizedDescriptionKey : errorDescription])
+            return .error(error)
         }
         
         let token = notification.userInfo![TokenKey] as! DropboxAccessToken
-        return .Success(token)
+        return .success(token)
     }
 }

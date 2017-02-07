@@ -39,4 +39,11 @@ class MainVC: UISplitViewController {
             }
         }
     }
+    
+    @IBAction func unwindToMainVC(sender: UIStoryboardSegue)
+    {
+        let sourceViewController = sender.source
+        // Pull any data from the view controller which initiated the unwind segue.
+        
+    }
 }

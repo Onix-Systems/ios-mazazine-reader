@@ -49,7 +49,7 @@ class UploadListViewController: UIViewController {
     }
     
     fileprivate func actOnDropboxCurrentAuthorizationStatus() {
-        if let client = Dropbox.authorizedClient {
+        if let client = DropboxClientsManager.authorizedClient {
             self.linkButton.isHidden = true
             self.tableView.isHidden = false
             self.proceedWithClient(client)
@@ -62,9 +62,9 @@ class UploadListViewController: UIViewController {
         DispatchQueue.main.async {
             let result = DropboxDidLoginNotification.resultFromNotification(notification)
             switch result {
-            case .Success(_):
+            case .success(_):
                 self.actOnDropboxCurrentAuthorizationStatus()
-            case .Error(let error):
+            case .error(let error):
                 Alert.error(error, controller: self)
             }
         }
@@ -72,7 +72,7 @@ class UploadListViewController: UIViewController {
     
     fileprivate func proceedWithClient(_ client: DropboxClient) {
         self.client = client
-        HUD.show(.Progress)
+        HUD.show(.progress)
         client.files.listFolder(path: "").response { (response, error) in
             DispatchQueue.main.async(execute: {
                 HUD.hide()
@@ -89,7 +89,11 @@ class UploadListViewController: UIViewController {
     }
     
     @IBAction func linkButtonAction(_ sender: AnyObject) {
-        Dropbox.authorizeFromController(self)
+        let openUrl : (URL) -> () = { url in
+            UIApplication.shared.openURL(url)
+        }
+        
+        DropboxClientsManager.authorizeFromController(UIApplication.shared, controller: self, openURL: openUrl)
     }
     
     @IBOutlet weak var linkButton: UIButton!
@@ -109,13 +113,13 @@ class UploadListViewController: UIViewController {
     fileprivate func localURLForEntry(_ entry: Files.Metadata) -> URL {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let documentsUrl = URL(string: documentsPath)!
-        let dropboxUrl = documentsUrl.appendingPathComponent(documentsUrl.path)
-        let dropboxFolderPath = dropboxUrl.path
+        let dropboxFolerUrl = documentsUrl.appendingPathComponent("dropbox")
+        let dropboxFolderPath = dropboxFolerUrl.path
         
         var needToCreateFolder = false
         var isDir : ObjCBool = false
         if FileManager.default.fileExists(atPath: dropboxFolderPath, isDirectory: &isDir) {
-            if !isDir {
+            if isDir.boolValue {
                 needToCreateFolder = true
                 removeItemAtPath(dropboxFolderPath)
             }
@@ -127,11 +131,11 @@ class UploadListViewController: UIViewController {
             do {
                 try FileManager.default.createDirectory(atPath: dropboxFolderPath, withIntermediateDirectories: false, attributes: nil)
             } catch let error as NSError {
-                
+                print(error)
             }
         }
         
-        let fileUrl = URL.fileURLWithPathComponents([documentsPath,"dropbox",entry.pathLower])!
+        let fileUrl = NSURL.fileURL(withPathComponents: [dropboxFolderPath,entry.pathLower!])!
         return fileUrl
     }
     
@@ -176,13 +180,13 @@ extension UploadListViewController : UITableViewDelegate {
         
         let fileUrl = self.localURLForEntry(entry)
         
-        if FileManager.defaultManager().fileExistsAtPath(fileUrl.path!) {
-            self.goToDetailsWithPath(fileUrl.path!)
+        if FileManager.default.fileExists(atPath: fileUrl.path) {
+            self.goToDetailsWithPath(fileUrl.path)
             return
         }
         
-        HUD.show(.Progress)
-        client.files.download(path: entry.pathLower, destination: localURLClosureForEntry(entry)).response { (fileMetadata, error) in
+        HUD.show(.progress)
+        client.files.download(path: entry.pathLower!, destination: localURLClosureForEntry(entry)).response { (fileMetadata, error) in
             DispatchQueue.main.async(execute: {
                 print("data \(fileMetadata)")
                 print("error \(error)")
@@ -193,7 +197,7 @@ extension UploadListViewController : UITableViewDelegate {
                     return
                 }
                 
-                self.goToDetailsWithPath(fileUrl.path!)
+                self.goToDetailsWithPath(fileUrl.path)
             })
         }
         
