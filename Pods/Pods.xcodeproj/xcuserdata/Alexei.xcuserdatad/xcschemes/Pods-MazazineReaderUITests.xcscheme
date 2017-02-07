@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B16943C5DCE7CB030B146BE434728AC"
+               BlueprintIdentifier = "6345E523007AF50DCD9B5879C7AEA36D"
                BuildableName = "Pods_MazazineReaderUITests.framework"
                BlueprintName = "Pods-MazazineReaderUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B16943C5DCE7CB030B146BE434728AC"
+            BlueprintIdentifier = "6345E523007AF50DCD9B5879C7AEA36D"
             BuildableName = "Pods_MazazineReaderUITests.framework"
             BlueprintName = "Pods-MazazineReaderUITests"
             ReferencedContainer = "container:Pods.xcodeproj">
